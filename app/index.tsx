@@ -11,9 +11,14 @@ export default function App() {
       <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 20}}>
         managing waste made smarter!
       </Text>
-      <TouchableOpacity className="h-10 w-40 bg-black mt-64 rounded-2xl" onPress={() => router.push('/(tabs)/')}>
-        <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 20, color: 'white', paddingLeft:10 }}>
-          manage now
+      <TouchableOpacity className="h-10 w-44 bg-black mt-64 rounded-2xl" onPress={() => router.push('/citizen/')}>
+        <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 20, color: 'white', paddingLeft:13, paddingTop: 2 }}>
+          citizen's portal
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity className="h-10 w-44 bg-black mt-10 rounded-2xl" onPress={() => router.push('/admin/')}>
+        <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 20, color: 'white', paddingLeft:13, paddingTop: 2 }}>
+          admin's portal
         </Text>
       </TouchableOpacity>
     </View>
