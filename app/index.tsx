@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
  
 export default function App() {
   const router = useRouter();
-  return (
+    return (
     <View className="flex-1 items-center justify-center bg-lime-300">
       <Text style={{ fontFamily: 'Satoshi', fontSize: 130 }}>
         owm.

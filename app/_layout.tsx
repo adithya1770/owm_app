@@ -1,4 +1,6 @@
 import { useFonts } from "expo-font";
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
 import "../global.css";
@@ -14,14 +16,14 @@ export default function RootLayout() {
   });
 
   if (!loaded) {
-    return <View><Text>Loading fonts...</Text></View>;
+    return <GluestackUIProvider mode="light"><View><Text>Loading fonts...</Text></View></GluestackUIProvider>;
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="citizen" options={{ headerShown: false }} />
-      <Stack.Screen name="admin" options={{ headerShown: false }} />
-    </Stack>
+    <GluestackUIProvider mode="light"><Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="citizen" options={{ headerShown: false }} />
+        <Stack.Screen name="admin" options={{ headerShown: false }} />
+      </Stack></GluestackUIProvider>
   );
 }
