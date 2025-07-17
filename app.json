@@ -2,6 +2,7 @@
   "expo": {
     "name": "owm_app",
     "slug": "owm_app",
+    "deepLinking": true,
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
