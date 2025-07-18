@@ -1,7 +1,7 @@
 import { Input, InputField } from "@/components/ui/input"
 import { Pressable } from "@/components/ui/pressable"
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
 
 const index = () => {
@@ -11,8 +11,7 @@ const index = () => {
   const [displayName, setDisplayName] = React.useState('')
   const [houseId, setHouseId] = React.useState('')
   const [address, setAddress] = React.useState('')
-  const [otp, setOtp] = React.useState('')
-  let responseString = "";
+  let responseString = ""
 
   const payload = {
     "email": email,
@@ -33,38 +32,22 @@ const index = () => {
           body: JSON.stringify(payload),
         }
       );
-      responseString="User signed up successfully";
+      responseString = "User created successfully"
+      return {"message": "User created successfully"}
     }
     catch (error: string | any) {
-      responseString="Error signing up user";
+      responseString = "Error creating user"
       return {"message": "Error creating user", "error": error.message}
     }
   }
-
-    const handleVerify = async () => {
-    try{
-          const response = await fetch('https://owm.onrender.com/auth/customer_verify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(otp),
-        }
-      );
-      return {"message": "User verified successfully"}
-    }
-    catch (error: string | any) {
-      return {"message": "Error verifying user", "error": error.message}
-    }
-  }
   return (
-    <ScrollView>
+    <View>
       <View className="w-full bg-lime-400" style={{height: 170}}>
         <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 72, marginTop: 35}} >
           Sign Up
         </Text>
         <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
-          using your phone number
+          using your email address
         </Text>
       </View>
       <Input
@@ -86,7 +69,7 @@ const index = () => {
       className="w-80 h-14 bg-white border border-gray-300 rounded-full mt-4 ml-14"
       
     >
-      <InputField placeholder="Password" style={{ fontFamily: 'Satoshi', fontSize: 17 }} onChangeText={() => setPassword(password)}/>
+      <InputField placeholder="Password" type="password" style={{ fontFamily: 'Satoshi', fontSize: 17 }} onChangeText={() => setPassword(password)}/>
     </Input>
     <Input
       variant="outline"
@@ -139,28 +122,10 @@ const index = () => {
     >
       <Text style={{ fontFamily: 'Satoshi', fontSize: 17, marginLeft: 32, marginTop:3, color: 'white' }}>Sign Up</Text>
     </Pressable>
-      <Input
-      variant="outline"
-      size="lg"
-      isDisabled={false}
-      isInvalid={false}
-      isReadOnly={false}
-      className="w-80 h-10 bg-white border border-gray-300 rounded-3xl mt-4 ml-14"
-      
-    >
-      <InputField placeholder="OTP" style={{ fontFamily: 'Satoshi', fontSize: 17 }} onChangeText={() => setOtp(otp)}/>
-    </Input>
-    <Pressable
-      className="ml-36 bg-primary-500 h-10 w-36 rounded-full mt-6 mb-4"
-      style={{backgroundColor: 'black'}}
-      onPress={handleVerify}
-    >
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 17, marginLeft: 32, marginTop:3, color: 'white' }}>Verify</Text>
-    </Pressable>
-    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2, marginBottom:6}}>
-      {responseString ? responseString : ""}
+    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
+      {responseString}
     </Text>
-    </ScrollView>
+    </View>
   )
 }
 

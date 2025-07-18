@@ -1,6 +1,6 @@
-import { useFonts } from "expo-font";
-import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import "@/global.css";
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
 import "../global.css";
@@ -22,8 +22,8 @@ export default function RootLayout() {
   return (
     <GluestackUIProvider mode="light"><Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="citizen" options={{ headerShown: false }} />
-        <Stack.Screen name="admin" options={{ headerShown: false }} />
+        <Stack.Screen name="citizen_auth" options={{ headerShown: false }} />
+        <Stack.Screen name="admin_auth" options={{ headerShown: false }} />
       </Stack></GluestackUIProvider>
   );
 }
