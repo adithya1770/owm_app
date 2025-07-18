@@ -6,6 +6,7 @@ import { Text, View } from 'react-native'
 const index = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  let responseString = "";
 
   const payload = {
     "email": email,
@@ -21,16 +22,21 @@ const index = () => {
         },
         body: JSON.stringify(payload),
       });
+      responseString = "User logged in successfully";
       return {"message": "User logged in successfully"}
     } catch (error: string | any) {
+      responseString = "Error logging in user";
       return {"message": "Error logging in", "error": error.message}
     }
   }
   return (
     <View>
       <View className="w-full bg-lime-400" style={{height: 450}}>
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 44, marginTop: 170 }} >
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 90, marginLeft: 44, marginTop: 170 }} >
           Log In
+        </Text>
+        <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 52, marginTop: 16 }}>
+          only user's who have signed up can log in
         </Text>
       </View>
       <Input
@@ -62,6 +68,9 @@ const index = () => {
     >
       <Text style={{ fontFamily: 'Satoshi', fontSize: 17, marginLeft: 36, marginTop:3, color: 'white' }}>Log In</Text>
     </Pressable>
+    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
+      {responseString ? responseString : ""}
+    </Text>
     </View>
   )
 }

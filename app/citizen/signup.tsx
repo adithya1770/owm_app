@@ -11,6 +11,7 @@ const index = () => {
   const [displayName, setDisplayName] = React.useState('')
   const [houseId, setHouseId] = React.useState('')
   const [address, setAddress] = React.useState('')
+  let responseString = ""
 
   const payload = {
     "email": email,
@@ -31,16 +32,18 @@ const index = () => {
           body: JSON.stringify(payload),
         }
       );
+      responseString = "User created successfully"
       return {"message": "User created successfully"}
     }
     catch (error: string | any) {
+      responseString = "Error creating user"
       return {"message": "Error creating user", "error": error.message}
     }
   }
   return (
     <View>
-      <View className="w-full bg-lime-400" style={{height: 140}}>
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 72, marginTop: 25}} >
+      <View className="w-full bg-lime-400" style={{height: 170}}>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 72, marginTop: 35}} >
           Sign Up
         </Text>
         <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
@@ -119,6 +122,9 @@ const index = () => {
     >
       <Text style={{ fontFamily: 'Satoshi', fontSize: 17, marginLeft: 32, marginTop:3, color: 'white' }}>Sign Up</Text>
     </Pressable>
+    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
+      {responseString}
+    </Text>
     </View>
   )
 }

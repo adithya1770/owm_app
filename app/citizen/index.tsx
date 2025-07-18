@@ -12,6 +12,7 @@ const index = () => {
   const [houseId, setHouseId] = React.useState('')
   const [address, setAddress] = React.useState('')
   const [otp, setOtp] = React.useState('')
+  let responseString = "";
 
   const payload = {
     "email": email,
@@ -32,9 +33,10 @@ const index = () => {
           body: JSON.stringify(payload),
         }
       );
-      return {"message": "User created successfully"}
+      responseString="User signed up successfully";
     }
     catch (error: string | any) {
+      responseString="Error signing up user";
       return {"message": "Error creating user", "error": error.message}
     }
   }
@@ -57,8 +59,8 @@ const index = () => {
   }
   return (
     <ScrollView>
-      <View className="w-full bg-lime-400" style={{height: 140}}>
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 72, marginTop: 25}} >
+      <View className="w-full bg-lime-400" style={{height: 170}}>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 60, marginLeft: 72, marginTop: 35}} >
           Sign Up
         </Text>
         <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2}}>
@@ -155,6 +157,9 @@ const index = () => {
     >
       <Text style={{ fontFamily: 'Satoshi', fontSize: 17, marginLeft: 32, marginTop:3, color: 'white' }}>Verify</Text>
     </Pressable>
+    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 15, marginLeft: 72, marginTop: 2, marginBottom:6}}>
+      {responseString ? responseString : ""}
+    </Text>
     </ScrollView>
   )
 }
