@@ -7,17 +7,17 @@ import { Text, View } from 'react-native';
 
 const Index = () => {
   const [password, setPassword] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [clicked, setClicked] = React.useState(false);
+  const [phone, setPhone] = React.useState('');
   const [responseString, setResponseString] = React.useState('');
+  const [clicked, setClicked] = React.useState(false);
 
   const handleLogin = async () => {
     setClicked(true);
     const payload = {
-      email,
+      phone,
       password,
     };
-      const response = await fetch('https://owm.onrender.com/auth/customer_signin', {
+      const response = await fetch('https://owm.onrender.com/auth/customer_signin_phone', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const Index = () => {
           only users who have signed up can log in
         </Text>
         <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 52, marginTop: 2 }}>
-            use your email and password to log in
+          use your phone number and password to log in
         </Text>
       </View>
 
@@ -60,9 +60,9 @@ const Index = () => {
         className="w-80 h-14 bg-white border border-gray-300 rounded-full mt-24 ml-14"
       >
         <InputField
-          placeholder="Email"
+          placeholder="Phone"
           style={{ fontFamily: 'Satoshi', fontSize: 17 }}
-          onChangeText={setEmail}
+          onChangeText={setPhone}
         />
       </Input>
 
