@@ -3,13 +3,15 @@ import { Pressable } from "@/components/ui/pressable";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from "expo-router";
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import { AuthContext } from '../AuthContext';
 
 const Index = () => {
   const [password, setPassword] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [responseString, setResponseString] = React.useState('');
   const [clicked, setClicked] = React.useState(false);
+  const { setUid } = React.useContext(AuthContext);
 
   const handleLogin = async () => {
     setClicked(true);
@@ -31,6 +33,7 @@ const Index = () => {
         await AsyncStorage.setItem('userId', data.token);
         setResponseString("User logged in successfully");
         router.push('/citizen_home');
+        setUid(data.token);
       } else {
         setResponseString("Error logging in user");
         throw new Error("User ID not found in response");
@@ -38,7 +41,7 @@ const Index = () => {
     }
       
   return (
-    <View>
+    <ScrollView>
       <View className="w-full bg-lime-400" style={{ height: 450 }}>
         <Text style={{ fontFamily: 'Satoshi', fontSize: 90, marginLeft: 44, marginTop: 170 }}>
           Log In
@@ -96,7 +99,7 @@ const Index = () => {
       <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 18, marginLeft: 113, marginTop: 10 }}>
         {responseString}
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 

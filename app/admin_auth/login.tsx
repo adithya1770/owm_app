@@ -46,7 +46,6 @@ const index = () => {
       isInvalid={false}
       isReadOnly={false}
       className="w-80 h-14 bg-white border border-gray-300 rounded-full mt-24 ml-14"
-      
     >
       <InputField placeholder="Admin Id" style={{ fontFamily: 'Satoshi', fontSize: 17 }} onChangeText={() => setAdminId(admin_id)}/>
     </Input>

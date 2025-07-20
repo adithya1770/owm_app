@@ -1,7 +1,7 @@
 import { Input, InputField } from "@/components/ui/input";
 import { Pressable } from "@/components/ui/pressable";
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 
 const Index = () => {
   const [email, setEmail] = React.useState("");
@@ -46,7 +46,7 @@ const handleSignUp = async () => {
 
 
   return (
-    <View>
+    <ScrollView>
       <View className="w-full bg-lime-400" style={{ height: 170 }}>
         <Text
           style={{
@@ -148,7 +148,7 @@ const handleSignUp = async () => {
       >
         {responseString}
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 

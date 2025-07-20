@@ -3,13 +3,15 @@ import { Pressable } from "@/components/ui/pressable";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from "expo-router";
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import { AuthContext } from '../AuthContext';
 
 const Index = () => {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [clicked, setClicked] = React.useState(false);
   const [responseString, setResponseString] = React.useState('');
+  const { uid, setUid } = React.useContext(AuthContext);  
 
   const handleLogin = async () => {
     setClicked(true);
@@ -27,8 +29,9 @@ const Index = () => {
 
       const data = await response.json();
 
-      if (data && data._id) {
+      if (data && data.token) {
         await AsyncStorage.setItem('userId', data.token);
+        setUid(data.token);
         setResponseString("User logged in successfully");
         router.push('/citizen_home');
       } else {
@@ -38,7 +41,7 @@ const Index = () => {
     }
       
   return (
-    <View>
+    <ScrollView>
       <View className="w-full bg-lime-400" style={{ height: 450 }}>
         <Text style={{ fontFamily: 'Satoshi', fontSize: 90, marginLeft: 44, marginTop: 170 }}>
           Log In
@@ -93,10 +96,10 @@ const Index = () => {
         </Text>
       </Pressable>
 
-      <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 18, marginLeft: 113, marginTop: 10 }}>
+      <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 18, marginLeft: 86, marginTop: 10 }}>
         {responseString}
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 

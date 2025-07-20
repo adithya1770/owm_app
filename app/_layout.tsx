@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
 import "../global.css";
+import AuthProvider from "./AuthContext";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -20,10 +21,14 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode="light"><Stack>
+    <AuthProvider value={{ uid: "", setUid: () => {} }}>
+    <GluestackUIProvider mode="light">
+      <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="citizen_auth" options={{ headerShown: false }} />
         <Stack.Screen name="admin_auth" options={{ headerShown: false }} />
-      </Stack></GluestackUIProvider>
+      </Stack>
+    </GluestackUIProvider>
+    </AuthProvider>
   );
 }
