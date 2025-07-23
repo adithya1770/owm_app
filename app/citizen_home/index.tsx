@@ -12,7 +12,7 @@ const index = () => {
   const [email, setEmail] = React.useState<string | null>(null);
   const [address, setAddress] = React.useState<string | null>(null);
   const [balance , setBalance] = React.useState<number | null>(null);
-  const [image, setImage] = React.useState<string | null>(null);
+  const [image, setImage] = React.useState<string>('');
   useEffect(() => {
     const getInfo = async () => {
       const user_details = await fetch('https://owm.onrender.com/user/me', {
@@ -33,6 +33,15 @@ const index = () => {
     }
     getInfo();
   }, [])
+  useEffect(() => {
+    const getImage = async () => {    
+      const imgUri = await AsyncStorage.getItem('image');
+      if (imgUri) {
+        setImage(imgUri);
+      }
+    }
+    getImage();
+  }, []);
   const pickImage = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) return;
@@ -54,6 +63,12 @@ const index = () => {
   return (
     <View>
       <Text style={{ fontFamily: 'Satoshi', fontSize: 40, color: 'black' }}>{display_name}</Text>
+        <Pressable onPress={pickImage}>
+          <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'blue' }}>
+            Upload Image
+          </Text>
+        </Pressable>
+        <Image source={image ? { uri: image } : undefined} height={10} width={10} className='rounded-3xl' />
       <Pressable>
         <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'blue' }} onPress={pickImage}>
           {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
