@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect } from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text } from 'react-native';
 import { AuthContext } from '../AuthContext';
 
 const index = () => {
@@ -61,26 +61,33 @@ const index = () => {
     }
   }
   return (
-    <View>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 40, color: 'black' }}>{display_name}</Text>
+    <ScrollView>
+      <Text style={{ fontFamily: 'Satoshi', fontSize: 44, color: 'black' }} className='ml-20 mt-10'>{display_name}</Text>
         <Pressable onPress={pickImage}>
-          <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'blue' }}>
-            Upload Image
-          </Text>
+          <Image source={image ? { uri: image } : {uri: 'https://i.pinimg.com/736x/c4/b7/5f/c4b75fb439096e44deb4d1e98480fa31.jpg'}} height={180} width={180} className='rounded-full ml-28 mt-10' />
         </Pressable>
-        <Image source={image ? { uri: image } : undefined} height={10} width={10} className='rounded-3xl' />
       <Pressable>
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'blue' }} onPress={pickImage}>
-          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        </Text>
       </Pressable>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'black' }}>House ID: {house_id}</Text>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'black' }}>Phone No: {phone_no}</Text>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'black' }}>Email: {email}</Text>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'black' }}>Address: {address}</Text>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color : 'black' }}>Balance: {balance}</Text>
-      <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'black' }}>UID: {uid}</Text>
-    </View>
+      <ScrollView className='h-96 w-96 border-black border-l-4 ml-8 mt-6'>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-4">House ID</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{house_id}</Text>
+
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Phone No</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">+{phone_no}</Text>
+
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Email</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{email}</Text>
+
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Address</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{address}</Text>
+
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Balance</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{balance}/-</Text>
+
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">UID</Text>
+        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{uid}</Text>
+      </ScrollView>
+    </ScrollView>
   )
 }
 
