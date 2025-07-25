@@ -1,8 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
+import { router } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Image, Pressable, ScrollView, Text } from 'react-native';
+import supabase from '../../client';
 import { AuthContext } from '../AuthContext';
+
 
 const index = () => {
   const { uid } = React.useContext(AuthContext);
@@ -33,6 +36,7 @@ const index = () => {
     }
     getInfo();
   }, [])
+  AsyncStorage.setItem('house_id', String(house_id));
   useEffect(() => {
     const getImage = async () => {    
       const imgUri = await AsyncStorage.getItem('image');
@@ -48,27 +52,37 @@ const index = () => {
 
     const result = await ImagePicker.launchImageLibraryAsync();
     const imgUri = await AsyncStorage.getItem('image');
+    const { data: imgData } = await supabase.from('user_overview').select('img_uri').eq('uid', uid).single();
+    const imgUri2: string = imgData?.img_uri ?? '';
     if(imgUri){
         if (!result.canceled) {
             setImage(result.assets[0].uri);
+            await supabase.from('user_overview').insert({
+              'img_uri': result.assets[0].uri,
+            }).eq('uid', uid);
         }
     }
     else{
         if (!result.canceled) {
-            setImage(result.assets[0].uri);
-            await AsyncStorage.setItem('image', result.assets[0].uri);
+            setImage(imgUri2);
+            await AsyncStorage.setItem('image', imgUri2);
         } 
     }
   }
+  const logOut = async () => {
+    await AsyncStorage.removeItem('userId');
+    await AsyncStorage.removeItem('house_id');
+    router.push('/citizen_auth/login');
+  }
   return (
-    <ScrollView>
+    <ScrollView className='ml-2 mt-144 bg-lime-300' style={{ height: 250, width: 370 }}>
       <Text style={{ fontFamily: 'Satoshi', fontSize: 44, color: 'black' }} className='ml-20 mt-10'>{display_name}</Text>
         <Pressable onPress={pickImage}>
           <Image source={image ? { uri: image } : {uri: 'https://i.pinimg.com/736x/c4/b7/5f/c4b75fb439096e44deb4d1e98480fa31.jpg'}} height={180} width={180} className='rounded-full ml-28 mt-10' />
         </Pressable>
       <Pressable>
       </Pressable>
-      <ScrollView className='h-96 w-96 border-black border-l-4 ml-8 mt-6'>
+      <ScrollView className='w-96 border-black border-l-4 ml-4 mt-6' style={{ height: 430}}>
         <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-4">House ID</Text>
         <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{house_id}</Text>
 
@@ -87,6 +101,9 @@ const index = () => {
         <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">UID</Text>
         <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: 'black' }} className="ml-4 mt-2">{uid}</Text>
       </ScrollView>
+      <Pressable onPress={logOut}>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 20, color: 'red' }} className='ml-40 mb-8 mt-8 h-14 w-28 pl-3 pt-2 rounded-3xl bg-white'>Log Out</Text>
+      </Pressable>
     </ScrollView>
   )
 }

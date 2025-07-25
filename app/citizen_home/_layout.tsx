@@ -6,6 +6,7 @@ const _layout = () => {
   return (
     <Tabs>
         <Tabs.Screen name="index" options={{ title: 'Profile', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="person-outline"  size={size} color={color}/>)  }} />
+        <Tabs.Screen name="houseinfo" options={{ title: 'House', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="home-outline"  size={size} color={color}/>)  }} />
     </Tabs>
   )
 }
