@@ -10,6 +10,7 @@ const _layout = () => {
         <Tabs.Screen name="pickup" options={{ title: 'Pickup', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="trash-outline"  size={size} color={color}/>)  }} />
         <Tabs.Screen name="billing" options={{ title: 'Billing Status', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="cash-outline"  size={size} color={color}/>)  }} />
         <Tabs.Screen name="payment" options={{ title: 'Payment', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="card-outline"  size={size} color={color}/>)  }} />
+        <Tabs.Screen name="complaint" options={{ title: 'Complaint', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="alert-outline"  size={size} color={color}/>)  }} />
     </Tabs>
   )
 }

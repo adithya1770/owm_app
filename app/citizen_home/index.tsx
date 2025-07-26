@@ -91,6 +91,9 @@ const Index = () => {
   const logOut = async () => {
     await AsyncStorage.removeItem('userId');
     await AsyncStorage.removeItem('house_id');
+    await AsyncStorage.removeItem('image');
+    await supabase.auth.signOut();
+    await AsyncStorage.clear();
     router.push('/citizen_auth/login');
   };
 
