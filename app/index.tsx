@@ -20,12 +20,12 @@ export default function App() {
       <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 20, color: 'white' }}>
         living sustainably by managing waste!
       </Text>
-      <TouchableOpacity className="h-10 w-44 bg-white mt-64 rounded-2xl" onPress={() => router.push('/citizen_auth/')}>
+      <TouchableOpacity className="h-10 w-44 bg-white mt-64 rounded-2xl" onPress={() => router.push('/citizen_auth')}>
         <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 20, color: 'black', paddingLeft:13, paddingTop: 2 }}>
           citizen's portal
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity className="h-10 w-44 bg-white mt-10 rounded-2xl" onPress={() => router.push('/admin_auth/')}>
+      <TouchableOpacity className="h-10 w-44 bg-white mt-10 rounded-2xl" onPress={() => router.push('/admin_auth')}>
         <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 20, color: 'black', paddingLeft:13, paddingTop: 2 }}>
           admin's portal
         </Text>
