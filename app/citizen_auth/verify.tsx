@@ -28,6 +28,7 @@ const Index = () => {
     } catch (error: any) {
       setResponseString("Error verifying user: " + error.message)
     }
+    setClicked(false)
   }
 
   return (

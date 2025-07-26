@@ -38,6 +38,7 @@ const Index = () => {
         setResponseString(data?.failed || "Sign up failed")
         setClicked(false)
       }
+      setClicked(false);
   }
 
   return (

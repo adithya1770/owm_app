@@ -42,6 +42,7 @@ const handleSignUp = async () => {
 
     console.log("Server response:", data);
     setResponseString(data.message || "Signup successful");
+    setClicked(false);
 };
 
 

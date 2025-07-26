@@ -38,6 +38,7 @@ const Index = () => {
         setResponseString("Error logging in user");
         throw new Error("User ID not found in response");
       }
+      setClicked(false);
     }
       
   return (
