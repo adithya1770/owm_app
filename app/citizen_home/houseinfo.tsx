@@ -37,7 +37,7 @@ const houseinfo = () => {
         getHouseInfo();
     }, []);
   return (
-        <ScrollView className='w-96 border-black border-r-4 border-l-4 ml-6 mt-144 bg-lime-300' style={{ height: 250}}>
+        <ScrollView className='w-96 border-black border-r-4 border-l-4 ml-6 mt-144 bg-lime-300' style={{ height: 250, width: 345}}>
             <Text style={{ fontFamily: 'Satoshi', fontSize: 64, color: 'black' }} className="ml-4 mt-20">House ID</Text>
             <Text style={{ fontFamily: 'SatoshiLight', fontSize: 32, color: 'black' }} className="ml-4 mt-2">{house_id}</Text>
     

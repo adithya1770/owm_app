@@ -21,12 +21,12 @@ const Payment = () => {
         return;
       }
 
-      const response = await fetch('https://owm.onrender.com/user/billing_info/complete_payment', {
+      const response = await fetch('https://owm.onrender.com/user/billing_info/payment_gateway', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ house_id, bill_id, phone }),
+        body: JSON.stringify({ "house_id": house_id, "bill_id": bill_id, "mobile": phone }),
       });
 
       const result = await response.json();
@@ -34,7 +34,7 @@ const Payment = () => {
       if (result?.success) {
         setResponseString('Payment completed successfully');
       } else {
-        setResponseString(`Payment failed: ${result?.message || 'Unknown error'}`);
+        setResponseString(`Status: ${result?.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error completing payment:', error);
@@ -47,14 +47,14 @@ const Payment = () => {
   return (
     <ScrollView>
       <View className="w-full bg-lime-400" style={{ height: 450 }}>
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 90, marginLeft: 44, marginTop: 170 }}>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 80, marginLeft: 24, marginTop: 110 }}>
           Payment Gateway
         </Text>
-        <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 52, marginTop: 16 }}>
+        <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 28, marginTop: 16 }}>
           Pay your existing bills here
         </Text>
-        <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 52 }}>
-          Use your OWM Wallet to complete the payment
+        <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 28 }}>
+          Use your owm. Wallet to complete the payment
         </Text>
       </View>
 
@@ -77,24 +77,23 @@ const Payment = () => {
       >
         <InputField
           placeholder="Phone Number"
-          secureTextEntry={true}
           style={{ fontFamily: 'Satoshi', fontSize: 17 }}
           onChangeText={setPhone}
         />
       </Input>
 
       <Pressable
-        className="ml-36 h-10 w-36 rounded-full mt-6"
+        className="ml-36 h-20 w-36 rounded-full mt-6"
         style={{ backgroundColor: clicked ? 'gray' : 'black', opacity: clicked ? 0.6 : 1 }}
         onPress={completePayment}
         disabled={clicked}
       >
-        <Text style={{ fontFamily: 'Satoshi', fontSize: 17, color: 'white', textAlign: 'center', marginTop: 6 }}>
+        <Text style={{ fontFamily: 'Satoshi', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 16 }}>
           Pay Now
         </Text>
       </Pressable>
 
-      <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 18, textAlign: 'center', marginTop: 20 }}>
+      <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 18, textAlign: 'center', marginTop: 20, marginBottom: 10, margin: 10 }}>
         {responseString}
       </Text>
     </ScrollView>

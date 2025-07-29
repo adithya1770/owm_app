@@ -68,6 +68,8 @@ const Index = () => {
     .eq('user_id', uid)
     .single();
 
+    setImage(existingUser?.img_uri || uri);
+
   if (fetchError) {
     console.error("Fetch error:", fetchError.message);
     return;
@@ -91,7 +93,6 @@ const Index = () => {
   const logOut = async () => {
     await AsyncStorage.removeItem('userId');
     await AsyncStorage.removeItem('house_id');
-    await AsyncStorage.removeItem('image');
     await supabase.auth.signOut();
     await AsyncStorage.clear();
     router.push('/citizen_auth/login');

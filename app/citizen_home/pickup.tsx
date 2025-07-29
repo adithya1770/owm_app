@@ -39,21 +39,32 @@ const Pickup = () => {
 
     return (
         <ScrollView>
+                  <View className="w-full bg-lime-400" style={{ height: 450 }}>
+                    <Text style={{ fontFamily: 'Satoshi', fontSize: 64, marginLeft: 26, marginTop: 120 }}>
+                      PICKUPs
+                    </Text>
+                    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 24, marginTop: 16 }}>
+                      complete details about your garbage pickups
+                    </Text>
+                    <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 14, marginLeft: 24, marginTop: 2 }}>
+                        scroll down to view entire list of pickups
+                    </Text>
+                  </View>
             <View>
                 {
                     data.map((item, index) => (
-                        <View key={index} className='w-96 border-black border-r-4 border-l-4 ml-6 mt-4 bg-lime-300 p-4'>
-                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-20">Pickup ID</Text>
+                        <View key={index} className='w-96 border-black border-l-4 border-r-4 rounded-3xl ml-6 mt-10 bg-lime-300 p-4'>
+                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-3">Pickup ID</Text>
                             <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.pickup_id}</Text>
 
                             <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Pickup Time</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.timestamp}</Text>
+                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">Picked on {item.timestamp.slice(0, 10)} at {item.timestamp.slice(11, 16)}</Text>
 
                             <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Bin ID</Text>
                             <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.bin_id}</Text>
 
                             <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Truck ID</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.truck_id}</Text>
+                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2 mb-4">{item.truck_id}</Text>
                         </View>
                     ))
                 }
