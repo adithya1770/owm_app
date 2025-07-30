@@ -5,8 +5,8 @@ import React from 'react';
 const _layout = () => {
   return (
     <Tabs>
-        <Tabs.Screen name="index" options={{ title: 'Sign Up', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="log-in-outline"  size={size} color={color}/>) }} />
-        <Tabs.Screen name="login" options={{ title: 'Log In', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="person-outline"  size={size} color={color}/>) }} />
+        <Tabs.Screen name="index" options={{ title: 'Home', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="log-in-outline"  size={size} color={color}/>) }} />
+        <Tabs.Screen name="admin_info" options={{ title: 'Admin', headerShown: false, tabBarIcon: ({color, size}) => (<Ionicons name="shield-checkmark-outline"  size={size} color={color}/>) }} />
     </Tabs>
   )
 }

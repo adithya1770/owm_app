@@ -51,7 +51,7 @@ const houseinfo = () => {
             <Text style={{ fontFamily: 'SatoshiLight', fontSize: 32, color: 'black' }} className="ml-4 mt-2">{gps_location}</Text>
     
             <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">STATUS</Text>
-            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: remarks ? "green" : "red" }} className="ml-4 mt-2 mb-10">{collected}</Text>
+            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 18, color: remarks ? "red" : "green" }} className="ml-4 mt-2 mb-10">{collected}</Text>
         </ScrollView>
   )
 }

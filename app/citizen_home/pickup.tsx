@@ -4,10 +4,12 @@ import { ScrollView, Text, View } from 'react-native';
 
 const Pickup = () => {
     const [data, setData] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const getPickupInfo = async () => {
             try {
+                setLoading(true);
                 const house_id = await AsyncStorage.getItem('house_id');
                 if (!house_id) {
                     console.warn('No house_id found in AsyncStorage');
@@ -35,7 +37,12 @@ const Pickup = () => {
         };
 
         getPickupInfo();
+        setLoading(false);
     }, []);
+
+    if(loading) {
+        return <Text>Loading...</Text>;     
+    }
 
     return (
         <ScrollView>
