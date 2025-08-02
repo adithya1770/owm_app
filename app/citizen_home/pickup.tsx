@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
 const Pickup = () => {
     const [data, setData] = useState<any[]>([]);
@@ -57,25 +57,33 @@ const Pickup = () => {
                         scroll down to view entire list of pickups
                     </Text>
                   </View>
-            <View>
-                {
+                  <View>
+                {loading ? (
+                    <View className="mt-10 items-center justify-center">
+                    <ActivityIndicator size="large" color="black" />
+                    <Text style={{ fontFamily: 'Satoshi', marginTop: 10 }}>Loading pickups...</Text>
+                    </View>
+                ) : (
                     data.map((item, index) => (
-                        <View key={index} className='w-96 border-black border-l-4 border-r-4 rounded-3xl ml-6 mt-10 bg-lime-300 p-4'>
-                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-3">Pickup ID</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.pickup_id}</Text>
+                    <View key={index} className='w-96 border-black border-l-4 border-r-4 rounded-3xl ml-6 mt-10 bg-lime-300 p-4'>
+                        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-3">Pickup ID</Text>
+                        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.pickup_id}</Text>
 
-                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Pickup Time</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">Picked on {item.timestamp.slice(0, 10)} at {item.timestamp.slice(11, 16)}</Text>
+                        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Pickup Time</Text>
+                        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">
+                        Picked on {item.timestamp.slice(0, 10)} at {item.timestamp.slice(11, 16)}
+                        </Text>
 
-                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Bin ID</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.bin_id}</Text>
+                        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Bin ID</Text>
+                        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2">{item.bin_id}</Text>
 
-                            <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Truck ID</Text>
-                            <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2 mb-4">{item.truck_id}</Text>
-                        </View>
+                        <Text style={{ fontFamily: 'Satoshi', fontSize: 18, color: 'black' }} className="ml-4 mt-2">Truck ID</Text>
+                        <Text style={{ fontFamily: 'SatoshiLight', fontSize: 16, color: 'black' }} className="ml-4 mt-2 mb-4">{item.truck_id}</Text>
+                    </View>
                     ))
-                }
-            </View>
+                )}
+                </View>
+
         </ScrollView>
     );
 };

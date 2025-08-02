@@ -48,6 +48,9 @@ export default function RootLayout() {
           <Stack.Screen name="citizen_auth" options={{ headerShown: false }} />
           <Stack.Screen name="admin_auth" options={{ headerShown: false }} />
           <Stack.Screen name="citizen_home" options={{ headerShown: false }} />
+          <Stack.Screen name="addition" options={{ headerShown: false }} />
+          <Stack.Screen name="removals" options={{ headerShown: false }} />
+          <Stack.Screen name="analytics" options={{ headerShown: false }} />
         </Stack>
       </GluestackUIProvider>
     </AuthProvider>
