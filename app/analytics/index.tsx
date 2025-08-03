@@ -30,7 +30,7 @@ const AdminAnalytics = () => {
 
   return (
     <ScrollView>
-      <View className="w-full bg-yellow-400 min-h-screen p-6 items-center">
+      <View className="w-full bg-lime-400 min-h-screen p-6 items-center">
         <Text style={{ fontFamily: 'Satoshi', fontSize: 72, marginBottom: 60 }}>
           Analytics
         </Text>

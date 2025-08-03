@@ -80,7 +80,7 @@ const TruckInfoScreen = () => {
             </Text>
           ) : null}
         </View>
-
+          </View>
         {scheduleData.map((item: any, index: number) => (
           <View key={index} className="bg-white p-4 w-96 rounded-lg shadow-md ml-7 mt-4 mb-4">
             <Text style={{ fontFamily: 'SatoshiItalic', fontSize: 16 }}>Schedule ID: {item.schedule_id}</Text>
@@ -99,7 +99,7 @@ const TruckInfoScreen = () => {
             </Text>
           </View>
         ))}
-      </View>
+      
     </ScrollView>
   );
 };

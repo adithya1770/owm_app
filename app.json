@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "owm_app",
-    "slug": "owm_app",
+    "name": "owm.",
+    "slug": "owm.",
     "deepLinking": true,
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.adithyaps.owm_app"
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +43,10 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "0091dfc0-c1a7-4410-bb61-3c5a3a54ee68"
       }
+    }
   }
-}
 }
